@@ -73,14 +73,21 @@ public final class NetworkUtils {
         Uri builtUri =
                 Uri.parse(FORECAST_BASE_URL).buildUpon()
                         .appendQueryParameter(QUERY_PARAM, locationQuery)
+                        .appendQueryParameter(FORMAT_PARAM, format)
+                        .appendQueryParameter(UNITS_PARAM, units)
+                        .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
                         .build();
 
         URL builtURL = null;
+
         try {
             builtURL = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
+        Log.v(TAG, "Built URI " + url);
+
 
         return builtURL;
     }
